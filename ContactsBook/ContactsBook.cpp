@@ -4,6 +4,11 @@
 
 #define MAX_LOADSTRING 100
 
+//* Дескриптори елементів управління :
+HWND hList1, hList2;
+HWND hEdit1, hEdit3, hEdit4, hEdit5;
+HWND hButton1, hButton2, hButton4, hButton5;
+
 
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
@@ -142,8 +147,35 @@ INT_PTR CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
+    {
+        // 1
+        //List
+        hList1 = GetDlgItem(hDlg, IDC_LIST1);
+        hList2 = GetDlgItem(hDlg, IDC_LIST2);
 
+        //Edit
+        hEdit1 = GetDlgItem(hDlg, IDC_EDIT1);
+        hEdit3 = GetDlgItem(hDlg, IDC_EDIT3);
+        hEdit4 = GetDlgItem(hDlg, IDC_EDIT4);
+        hEdit5 = GetDlgItem(hDlg, IDC_EDIT5);
+
+        //Button
+        hButton1 = GetDlgItem(hDlg, IDC_BUTTON1);
+        hButton2 = GetDlgItem(hDlg, IDC_BUTTON2);
+        hButton4 = GetDlgItem(hDlg, IDC_BUTTON4);
+        hButton5 = GetDlgItem(hDlg, IDC_BUTTON5);
+
+        //2
+        SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Робочи контаки"));
+        SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Сімейні контаки"));
+        SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Приватні контаки"));
+        SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Публічні контаки"));
+        SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Сосідів контаки"));
+
+
+    }
+        return (INT_PTR)TRUE;
+    
     case WM_COMMAND:
         if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
         {
